@@ -15,13 +15,9 @@
         :class="{ 'no-border': index === section.data.length - 1 }"
         @tap="openUrl(item.mobil_url || item.url)"
       >
-        <view class="news-content">
-          <text class="news-index">{{
-            String(index + 1).padStart(2, "0")
-          }}</text>
-          <text class="news-title">{{ item.title }}</text>
-          <text class="hot-count">{{ item.hot }}</text>
-        </view>
+        <text class="news-index">{{ String(index + 1).padStart(2, "0") }}</text>
+        <text class="news-title">{{ item.title }}</text>
+        <text class="hot-count">{{ item.hot }}</text>
       </view>
     </scroll-view>
   </view>
@@ -84,6 +80,9 @@ const openUrl = (url: string) => {
 
 .section-header {
   margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .section-title {
@@ -104,12 +103,14 @@ const openUrl = (url: string) => {
   font-size: 11px;
   color: #999999;
   letter-spacing: 0.2px;
+  line-height: 1.4;
 }
 
 .update-time {
   font-size: 11px;
   color: #999999;
   letter-spacing: 0.2px;
+  line-height: 1.4;
   &::before {
     content: "·";
     margin: 0 4px;
@@ -124,6 +125,7 @@ const openUrl = (url: string) => {
   display: flex;
   align-items: flex-start;
   padding: 10px 0;
+  gap: 8px;
   cursor: pointer;
 
   &:active {
@@ -132,39 +134,35 @@ const openUrl = (url: string) => {
 }
 
 .news-index {
-  min-width: 16px;
-  font-size: 13px;
+  width: 24px;
+  font-size: 15px;
   color: rgba(0, 0, 0, 0.3);
   font-family: "Roboto Mono", monospace;
-  margin-right: 2px;
-  padding-top: 1px;
-}
-
-.news-content {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
+  line-height: 24px;
+  flex-shrink: 0;
+  text-align: left;
 }
 
 .news-title {
   flex: 1;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 24px;
   color: rgba(0, 0, 0, 0.85);
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  min-height: 24px;
+  margin-right: 4px;
 }
 
 .hot-count {
-  min-width: 48px;
-  font-size: 12px;
+  min-width: 72px;
+  font-size: 13px;
   color: rgba(0, 0, 0, 0.4);
   text-align: right;
-  padding-top: 2px;
+  line-height: 24px;
+  flex-shrink: 0;
 }
 
 :deep(:not(.dark)) {
