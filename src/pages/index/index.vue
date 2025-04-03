@@ -38,6 +38,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
+// 组件导入
+import YiYan from "../../components/YiYan.vue";
+import NewsSection from "../../components/NewsSection.vue";
+import MusicPlayer from "../../components/MusicPlayer.vue";
 
 defineOptions({
   name: "Index",
@@ -66,11 +70,6 @@ interface ApiResponse {
   success: boolean;
   data: NewsSection[];
 }
-
-// 组件导入
-import YiYan from "../../components/YiYan.vue";
-import NewsSection from "../../components/NewsSection.vue";
-import MusicPlayer from "../../components/MusicPlayer.vue";
 
 // 常量定义
 const APP_NAME = "摸鱼时刻";
@@ -169,14 +168,17 @@ interface NavigationBarConfig {
   display: flex;
   flex-direction: column;
   background-color: #f7f8fa;
-  padding-top: var(--status-bar-height);
 }
 
 .nav-bar {
-  padding: 12px 16px 16px;
+  padding: calc(var(--status-bar-height) + 12px) 16px 16px;
   background-color: #ffffff;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .nav-content {
@@ -204,6 +206,15 @@ interface NavigationBarConfig {
   letter-spacing: 0.2px;
 }
 
+.content-container {
+  flex: 1;
+  margin-top: calc(var(--status-bar-height) + 90px);
+}
+
+.sections-container {
+  padding: 4px 0 20px;
+}
+
 .section-card {
   margin: 12px 16px;
   padding: 16px 0;
@@ -224,14 +235,5 @@ interface NavigationBarConfig {
 .loading-text {
   font-size: 14px;
   color: #999999;
-}
-
-.content-container {
-  flex: 1;
-  overflow: hidden;
-}
-
-.sections-container {
-  padding: 4px 0 20px;
 }
 </style>
